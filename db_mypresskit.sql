@@ -6,7 +6,7 @@ create table biography
   LANG         varchar(2) null,
   BIO          longtext   null,
   constraint biography_user_USER_ID_fk
-    foreign key (USER_ID) references user (user_id)
+    foreign key (USER_ID) references user (USER_ID)
 );
 
 INSERT INTO db_mypresskit.biography (BIOGRAPHY_ID, USER_ID, LANG, BIO) VALUES (1, null, 'SP', 'Esta es mi bio en sp');
@@ -33,7 +33,7 @@ create table image
   IMAGE_FILE     longblob     null,
   IMAGE_CATEGORY varchar(255) null,
   constraint image_user_USER_ID_fk
-    foreign key (USER_ID) references user (user_id)
+    foreign key (USER_ID) references user (USER_ID)
 );
 
 INSERT INTO db_mypresskit.image (IMAGE_ID, USER_ID, IMAGE_NAME, IMAGE_FILE, IMAGE_CATEGORY) VALUES (1, null, 'Foto de Izzy', 0x736F6D652066696C652068657265, 'pics');
@@ -51,26 +51,30 @@ create table label
   LOGO          char(255) null
 );
 
-INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (1, 'qbCrew', 'qbCrew is a qbtrance branche', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
-INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (2, 'qbCrew', 'qbCrew is a qbtrance branche', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
+INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (2, 'qbCrew', 'This is an edited description', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
 INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (3, 'qbCrew', 'qbCrew is a qbtrance branche', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
 INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (4, 'qbCrew', 'qbCrew is a qbtrance branche', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
+INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (5, 'qbCrew', 'qbCrew is a qbtrance branche', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
+INSERT INTO db_mypresskit.label (LABEL_ID, LABEL_NAME, DESCRIPTION, EMAIL, LABEL_MANAGER, COUNTRY, LOGO) VALUES (6, 'qbCrew', 'qbCrew is a qbtrance branche', 'info@qbtrance.com', 'israel Morales', 'Mexico', 'logo file here');
 create table link
 (
   LINK_ID       int auto_increment
     primary key,
-  USER_ID       int        not null,
+  USER_ID       int        null,
   LINK_NAME     char(255)  null,
-  DESCRIPTION   char(255)  null,
+  DESCRIPT      char(255)  null,
   URL           char(255)  null,
   EMBEDED_CODE  longtext   null,
   IS_EVENT_LINK tinyint(1) null,
   IS_MUSIC_LINK tinyint(1) null
 );
 
-INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPTION, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (1, 0, null, 'Link description', 'http://qbtrance.com', 'Embeded code', 0, 1);
-INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPTION, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (3, 0, null, 'Link description', 'http://qbtrance.com', 'Embeded code', 0, 1);
-INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPTION, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (4, 0, null, 'Link description', 'http://qbtrance.com', 'Embeded code', 0, 1);
+INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPT, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (1, 41, null, 'Description EDITED!', 'http://qbtrance.com', 'Embeded code', 0, 1);
+INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPT, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (3, 0, null, 'Link description', 'http://qbtrance.com', 'Embeded code', 0, 1);
+INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPT, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (4, 0, null, 'Link description', 'http://qbtrance.com', 'Embeded code', 0, 1);
+INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPT, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (5, null, 'SoundCloud', 'SoundCloud description', 'link URL', 'EMBEDED CODE FOR PLUGINS', 0, 1);
+INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPT, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (6, null, 'SoundCloud', 'SoundCloud description', 'link URL', 'EMBEDED CODE FOR PLUGINS', 0, 1);
+INSERT INTO db_mypresskit.link (LINK_ID, USER_ID, LINK_NAME, DESCRIPT, URL, EMBEDED_CODE, IS_EVENT_LINK, IS_MUSIC_LINK) VALUES (7, null, 'SoundCloud', 'SoundCloud description', 'link URL', 'EMBEDED CODE FOR PLUGINS', 0, 1);
 create table message
 (
   MESSAGE_ID   int auto_increment
@@ -83,7 +87,7 @@ create table message
 
 INSERT INTO db_mypresskit.message (MESSAGE_ID, FROM_USER_ID, TO_USER_ID, MESSAGE, IS_DELETED) VALUES (1, 1, 2, 'Hola, este es un mensaje', 0);
 INSERT INTO db_mypresskit.message (MESSAGE_ID, FROM_USER_ID, TO_USER_ID, MESSAGE, IS_DELETED) VALUES (2, 1, 2, 'Hola, este es un mensaje', 0);
-INSERT INTO db_mypresskit.message (MESSAGE_ID, FROM_USER_ID, TO_USER_ID, MESSAGE, IS_DELETED) VALUES (3, 1, 2, 'Hola, este es un mensaje', 0);
+INSERT INTO db_mypresskit.message (MESSAGE_ID, FROM_USER_ID, TO_USER_ID, MESSAGE, IS_DELETED) VALUES (3, 42, 23, 'Hola mensajes EDITADO', 1);
 create table prefs
 (
   PREF_ID  int auto_increment
@@ -93,6 +97,7 @@ create table prefs
 );
 
 INSERT INTO db_mypresskit.prefs (PREF_ID, USER_ID, BG_COLOR) VALUES (1, 1, 'RED');
+INSERT INTO db_mypresskit.prefs (PREF_ID, USER_ID, BG_COLOR) VALUES (2, 1, 'BLACK');
 create table user
 (
   USER_ID         int auto_increment
@@ -137,22 +142,24 @@ create table user_label
 
 create table visit
 (
-  USER_ID   int       not null,
+  VISIT_ID  int auto_increment
+    primary key,
+  USER_ID   int       null,
   USER_IP   char(100) null,
-  TIMESTAMP timestamp null,
-  constraint visit_user_ID_fk
-    foreign key (USER_ID) references user (USER_ID)
+  TIMESTAMP timestamp null
 );
 
 
 create table vote
 (
+  VOTE_ID        int auto_increment
+    primary key,
   USER_ID        int null,
   VOTED_USER_ID  int null,
   VOTED_LABEL_ID int null,
   constraint VOTE_user_USER_ID_fk
-    foreign key (USER_ID) references user (user_id),
+    foreign key (USER_ID) references user (USER_ID),
   constraint vote_label_LABEL_ID_fk
-    foreign key (VOTED_LABEL_ID) references label (label_id)
+    foreign key (VOTED_LABEL_ID) references label (LABEL_ID)
 );
 
