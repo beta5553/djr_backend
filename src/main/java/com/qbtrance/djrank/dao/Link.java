@@ -24,7 +24,7 @@ public class Link {
 
     @Column(name = "LINK_NAME")
     private String linkName;
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPT")
     private String description;
     @Column(name = "URL")
     private String url;

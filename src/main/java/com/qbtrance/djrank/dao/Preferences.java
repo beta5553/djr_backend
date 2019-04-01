@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Preferences {
 
     @Id
-    @GeneratedValue ( strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "PREF_ID")
     private int preferenceId;
 
@@ -21,5 +21,9 @@ public class Preferences {
 
     @Column (name = "BG_COLOR")
     private String bgColor;
+
+    @ManyToOne
+    @JoinColumn (name = "user_id", insertable=false, updatable=false, nullable = true)
+    private User user;
 
 }

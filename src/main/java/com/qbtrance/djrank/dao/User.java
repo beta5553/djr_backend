@@ -66,6 +66,11 @@ public class User {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
     private Set<Link> linkSet;
 
+    @OneToOne(targetEntity=Preferences.class)
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
+    Preferences prefs;
+
+
    /**
      *
      * @param bio
