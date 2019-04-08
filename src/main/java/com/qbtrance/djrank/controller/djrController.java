@@ -1,13 +1,17 @@
 package com.qbtrance.djrank.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@RestController
 public class djrController {
 
+    // Redirect to index.html
     @GetMapping("/")
-    public String djrStart(){
-        return "Hellow DJR";
+    public void djrStart(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/index.html");
     }
 }

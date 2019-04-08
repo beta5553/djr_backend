@@ -17,22 +17,25 @@ public class VoteTest {
     @Autowired
     VoteRepository voteRepository;
 
+
+    /**
+     * This test requires exisiting userUd, Existing voted label and existing voted user Id.
+     *
+     */
     @Test
-    public void createVoteTest() {
+    public void createVoteTest()
+    {
         logger.info("createVoteTest start");
-
         Vote vote = new Vote();
-        vote.setUserId(1);
-        vote.setVotedLabelId(1);
-        vote.setVotedUserId(2);
-
+        vote.setUserId(39);
+        vote.setVotedLabelId(6);
+        vote.setVotedUserId(500);
         voteRepository.save(vote);
-
         logger.info("createVoteTest end");
     }
 
     @Test
-    public void updateVoteTest(){
+    public void updateVoteTest() {
 
     }
 

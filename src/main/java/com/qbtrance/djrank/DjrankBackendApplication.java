@@ -12,7 +12,7 @@ public class DjrankBackendApplication {
 
     {
         logger.info(this.getClass().getName());
-        logger.info("Starting DjRank app");
+        logger.info("Starting DJR app");
     }
 
     public static void main(String[] args) {
