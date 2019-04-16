@@ -9,28 +9,31 @@ import java.net.URLEncoder;
 
 public class LanguageTranslator {
 
-        public static void main(String[] args) throws IOException {
-            String text = "Hello world!";
-            //Translated text: Hallo Welt!
-            System.out.println("Translated text: " + translate("en", "sp", text));
-        }
+    public static void main(String[] args) throws IOException {
+        String text = "Hello world!";
+        //Translated text: Hallo Welt!
+        System.out.println("Translated text: " + translate("en", "sp", text));
+    }
 
-        private static String translate(String langFrom, String langTo, String text) throws IOException {
-            // INSERT YOU URL HERE
-            String urlStr = "https://your.google.script.url" +
-                    "?q=" + URLEncoder.encode(text, "UTF-8") +
-                    "&target=" + langTo +
-                    "&source=" + langFrom;
-            URL url = new URL(urlStr);
-            StringBuilder response = new StringBuilder();
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            return response.toString();
+    /*
+    Need to open amn
+     */
+    private static String translate(String langFrom, String langTo, String text) throws IOException {
+        // INSERT YOU URL HERE
+        String urlStr = "https://your.google.script.url" +
+                "?q=" + URLEncoder.encode(text, "UTF-8") +
+                "&target=" + langTo +
+                "&source=" + langFrom;
+        URL url = new URL(urlStr);
+        StringBuilder response = new StringBuilder();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
         }
+        in.close();
+        return response.toString();
+    }
 }

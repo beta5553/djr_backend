@@ -33,6 +33,8 @@ public class User {
     private boolean isVj;
     @Column(name = "IS_PROMOTER")
     private boolean isPromoter;
+    @Column(name = "IS_PERFORMER")
+    private boolean isPerformer;
     @Column(name = "SHORT_DESC")
     private String shortDesc;
     @Column(name = "EMAIL")
@@ -70,6 +72,10 @@ public class User {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
     Preferences prefs;
 
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(name="user_label", joinColumns = @JoinColumn(name="user_id",referencedColumnName = "user_id"),
+               inverseJoinColumns =@JoinColumn(name="label_id",referencedColumnName = "label_id"))
+    List<Label> labelList;
 
    /**
      *
@@ -108,5 +114,4 @@ public class User {
             linkSet.add(link);
         }
     }
-
 }

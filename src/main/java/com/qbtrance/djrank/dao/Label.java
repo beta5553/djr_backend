@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,5 +30,9 @@ public class Label {
     private String country;
     @Column(name = "LOGO")
     private String logo;
+
+    // The value of mappedBy should be the name of the field, in this case the list that is defined into the User entity.
+    @ManyToMany(mappedBy = "labelList")
+    List<User> userList;
 
 }

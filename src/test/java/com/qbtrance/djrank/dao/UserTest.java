@@ -1,4 +1,4 @@
-    package com.qbtrance.djrank.dao;
+package com.qbtrance.djrank.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +32,11 @@ public class UserTest {
         logger.info("createNewUserTest start");
         userRepository.save(createUserWithBiographies());
         logger.info("createNewUserTest end");
+    }
+
+    @Test
+    public void createUserWithLabel(){
+
     }
 
     @Test
@@ -91,6 +96,7 @@ public class UserTest {
         user.setPicture("Picture.jpg");
         user.setProducer(true);
         user.setPromoter(true);
+        user.setPerformer(true);
         user.setQrCode("No QRCode supported yet");
         user.setShortDesc("IZZY CX-1, Psytrance DJ");
         return user;

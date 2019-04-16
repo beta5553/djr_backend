@@ -125,5 +125,6 @@
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.smarthome.io:org.eclipse.smarthome.io.javasound:0.10.0.b1" level="project" />
   </component>
 </module>
