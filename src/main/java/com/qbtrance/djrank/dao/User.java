@@ -56,7 +56,6 @@ public class User {
 
     // Avoid lazy loading using FetchType.EAGER.
     @OneToMany(fetch = FetchType.EAGER, targetEntity=Biography.class, cascade = CascadeType.ALL)
-    //@OneToMany(targetEntity=Biography.class)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
     private List<Biography> biographyList;
 
@@ -68,7 +67,7 @@ public class User {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
     private Set<Link> linkSet;
 
-    @OneToOne(targetEntity=Preferences.class)
+    @OneToOne(targetEntity=Preferences.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
     Preferences prefs;
 
@@ -76,6 +75,37 @@ public class User {
     @JoinTable(name="user_label", joinColumns = @JoinColumn(name="user_id",referencedColumnName = "user_id"),
                inverseJoinColumns =@JoinColumn(name="label_id",referencedColumnName = "label_id"))
     List<Label> labelList;
+
+    @OneToMany(targetEntity=Vote.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
+    private List<Vote> voteList;
+
+    /**
+     *
+     * @param vote
+     */
+    public void addVote(Vote vote){
+        if (vote != null) {
+            if (voteList == null){
+                voteList = new ArrayList<>();
+            }
+            vote.setUser(this);
+            voteList.add(vote);
+        }
+    }
+
+    /**
+     *
+     * @param label
+     */
+    public void addLabel (Label label){
+        if (label != null) {
+            if (labelList==null){
+                labelList = new ArrayList<>();
+            }
+            labelList.add(label);
+        }
+    }
 
    /**
      *
@@ -114,4 +144,5 @@ public class User {
             linkSet.add(link);
         }
     }
+
 }

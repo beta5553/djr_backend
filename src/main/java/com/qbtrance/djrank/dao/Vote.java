@@ -25,4 +25,8 @@ public class Vote {
     @Column (name = "VOTED_LABEL_ID")
     private Integer votedLabelId;
 
+    @ManyToOne
+    @JoinColumn (name = "user_id", insertable=false, updatable=false, nullable = true)
+    private User user;
+
 }

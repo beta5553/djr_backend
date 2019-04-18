@@ -1,8 +1,6 @@
 package com.qbtrance.djrank;
 
-import com.qbtrance.djrank.dao.Biography;
-import com.qbtrance.djrank.dao.User;
-import com.qbtrance.djrank.dao.UserRepository;
+import com.qbtrance.djrank.dao.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -26,7 +24,7 @@ public class DjrConsolidatedTest {
     UserRepository userRepository;
 
     /*
-     * Dual Jokey.
+     * DJK
      * DJR Consolidate tests
      * Consolidate test, user creation with all its dependencies.
      *
@@ -40,13 +38,46 @@ public class DjrConsolidatedTest {
         //Adding one biography.
         Biography bioEn = new Biography();
         bioEn.setLang("EN");
-        bioEn.setBiography("Test user biography.");
+        bioEn.setBiography("Test user biography. X");
         user.addBiography(bioEn);
 
         Biography bioSp = new Biography();
         bioSp.setLang("SP");
-        bioSp.setBiography("Prueba de biografia del usuario user");
+        bioSp.setBiography("Prueba de biografia del usuario user X");
         user.addBiography(bioSp);
+
+        Label label = new Label();
+        label.setCountry("UK");
+        label.setDescription("Label from UK");
+        label.setEmail("label@email.com");
+        label.setLabelManager("Israel Morales");
+        label.setLabelName("qbtrance UK records");
+        label.setLogo("No logo");
+        user.addLabel(label);
+
+        Image image = new Image();
+        image.setImageCategory("profile");
+        image.setImageName("Profiles");
+        image.setImageFile("file location");
+        user.addImage(image);
+
+        Link link = new Link();
+        link.setDescription("SouundCloud link");
+        link.setEmbededCode("Some code here");
+        link.setMusicLink(true);
+        link.setEventLink(true);
+        link.setLinkName("soundcloud");
+        link.setUrl("link URL here");
+        //user.addLink(link);
+
+        Vote vote = new Vote();
+        vote.setVotedLabelId(12);
+        vote.setVotedUserId(42);
+        user.addVote(vote);
+
+        Preferences prefs = new Preferences();
+        prefs.setBgColor("ORANGE");
+        user.setPrefs(prefs);
 
         userRepository.save(user);
 
@@ -56,7 +87,7 @@ public class DjrConsolidatedTest {
     public User createUser() {
         User user = new User();
         user.setLastName("Morales Lopez");
-        user.setFirstName("izzy TEST");
+        user.setFirstName("izzy TEST X");
         user.setAka("CX-1");
         user.setCountryBirth("Mexico");
         user.setCurrentCountry("USA");
@@ -117,5 +148,4 @@ public class DjrConsolidatedTest {
 
         logger.info("printAllUser ends");
     }
-
 }
