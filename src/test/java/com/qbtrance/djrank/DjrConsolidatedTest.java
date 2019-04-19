@@ -68,12 +68,27 @@ public class DjrConsolidatedTest {
         link.setEventLink(true);
         link.setLinkName("soundcloud");
         link.setUrl("link URL here");
-        //user.addLink(link);
+        user.addLink(link);
 
         Vote vote = new Vote();
         vote.setVotedLabelId(12);
         vote.setVotedUserId(42);
         user.addVote(vote);
+
+        Vote vote1 = new Vote();
+        vote1.setVotedLabelId(12);
+        vote1.setVotedUserId(42);
+        user.addVote(vote1);
+
+        Vote vote2 = new Vote();
+        vote2.setVotedLabelId(12);
+        vote2.setVotedUserId(42);
+        user.addVote(vote2);
+
+        Vote vote3 = new Vote();
+        vote3.setVotedLabelId(12);
+        vote3.setVotedUserId(42);
+        user.addVote(vote3);
 
         Preferences prefs = new Preferences();
         prefs.setBgColor("ORANGE");

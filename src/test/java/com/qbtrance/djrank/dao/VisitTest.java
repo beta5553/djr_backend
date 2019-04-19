@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
@@ -22,11 +25,18 @@ public class VisitTest {
     @Test
     public void createVisitTest() {
         logger.info("createVisitTest start");
-
         Visit visit = new Visit();
         visit.setTimestamp(new Date("01/01/2019"));
         visit.setUserId(1);
-        visit.setUserIp("10.60.60.221");
+
+        Socket socket = new Socket();
+        try {
+            socket.connect(new InetSocketAddress("google.com", 80));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(socket.getLocalAddress());
+        visit.setUserIp(socket.getLocalAddress().toString());
         visitRepository.save(visit);
 
         logger.info("createVisitTest end");
