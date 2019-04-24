@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -146,21 +147,63 @@ public class DjrConsolidatedTest {
     }
 
     @Test
-    public void printAllUsers(){
+    @Transactional
+    public void printAllUsers()
+    {
         logger.info("printAllUser starts");
         List<User> userList = (List<User>) userRepository.findAll();
         userList.forEach(user -> System.out.println(user.getFirstName()));
 
+        System.out.println("--");
+        System.out.println("--");
+
         for(User user : userList){
             System.out.println("user id" + user.getUserId());
+            System.out.println("User name" + user.getFirstName());
 
-            for(Biography bio : user.getBiographyList()){
-                System.out.println("Printing bio list for user " + user.getUserId());
+            for(Biography bio : user.getBiographyList()) {
+                System.out.println("\nBiography info:");
                 System.out.println("Biography" + bio.getLang());
                 System.out.println("Biography" + bio.getBiography());
             }
-        }
 
+            for(Image iimage : user.getImageSet()) {
+                System.out.println("\nImage");
+                System.out.println("Image category " + iimage.getImageCategory());
+                System.out.println("Image name" + iimage.getImageName());
+                System.out.println("" + iimage.getImageFile());
+            }
+
+            for (Label label : user.getLabelList()) {
+                System.out.println("\nLabel info:");
+                System.out.println("Label name" + label.getLabelName());
+                System.out.println("Label description " + label.getDescription());
+                System.out.println("label manager " + label.getLabelManager());
+                System.out.println("label country" + label.getCountry());
+                System.out.println("label email" + label.getEmail());
+            }
+
+            for(Link link : user.getLinkSet()){
+                System.out.println("\nLink info:");
+                System.out.println("Link Desc: " + link.getDescription());
+                System.out.println("Link name " + link.getLinkName());
+                System.out.println("Link url" + link.getUrl());
+                System.out.println("Link embedded code:  " + link.getEmbededCode());
+            }
+
+            if (user.getPrefs()!=null) {
+                System.out.println("\nPreferences: ");
+                System.out.println("Background color: " + user.getPrefs().getBgColor());
+            }
+
+            for (Vote vote : user.getVoteList()){
+                System.out.println("\nVotes");
+                System.out.println("Voted label id: " + vote.getVotedLabelId());
+                System.out.println("Voted user id: " + vote.getVotedUserId());
+                System.out.println("Vote id: " + vote.getVoteId());
+            }
+
+        }
         logger.info("printAllUser ends");
     }
 }
