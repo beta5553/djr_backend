@@ -63,7 +63,6 @@ public class LabelTest {
             System.out.println("deleting...");
 
             label.setDescription("This is an edited description");
-
             labelRepository.save(label);
         }
 

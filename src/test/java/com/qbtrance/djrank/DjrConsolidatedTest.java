@@ -93,7 +93,7 @@ public class DjrConsolidatedTest {
 
         Preferences prefs = new Preferences();
         prefs.setBgColor("ORANGE");
-        user.setPrefs(prefs);
+        user.addPreferences(prefs);
 
         userRepository.save(user);
 
@@ -132,14 +132,11 @@ public class DjrConsolidatedTest {
     @Test
     public void deleteConsolidatedUser(){
         logger.info("deleteConsolidatedUser starts");
-        List<User> userList = userRepository.findByUserId(43);
+        User user = userRepository.findByUserId(43);
 
-        if (userList != null)
-            for (User user : userList){
-
+        if (user != null) {
                 logger.info("User found: " + user.getUserId());
                 logger.info("Preparing to delete user and its dependencies");
-
                 userRepository.delete(user);
             }
 
@@ -167,11 +164,11 @@ public class DjrConsolidatedTest {
                 System.out.println("Biography" + bio.getBiography());
             }
 
-            for(Image iimage : user.getImageSet()) {
+            for(Image image : user.getImageSet()) {
                 System.out.println("\nImage");
-                System.out.println("Image category " + iimage.getImageCategory());
-                System.out.println("Image name" + iimage.getImageName());
-                System.out.println("" + iimage.getImageFile());
+                System.out.println("Image category " + image.getImageCategory());
+                System.out.println("Image name" + image.getImageName());
+                System.out.println("" + image.getImageFile());
             }
 
             for (Label label : user.getLabelList()) {
@@ -202,8 +199,8 @@ public class DjrConsolidatedTest {
                 System.out.println("Voted user id: " + vote.getVotedUserId());
                 System.out.println("Vote id: " + vote.getVoteId());
             }
-
         }
-        logger.info("printAllUser ends");
+
+        logger.info("printAllUser all information and dependencies ends");
     }
 }

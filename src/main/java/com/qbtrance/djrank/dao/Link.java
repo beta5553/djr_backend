@@ -1,5 +1,6 @@
 package com.qbtrance.djrank.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -39,6 +40,7 @@ public class Link {
     //user most be lower case or will cause an exception.
     @ManyToOne
     @JoinColumn (name = "user_id", insertable=false, updatable=false, nullable = true)
+    @JsonBackReference
     private User user;
 
 }

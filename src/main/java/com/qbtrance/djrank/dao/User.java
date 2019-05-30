@@ -1,5 +1,6 @@
 package com.qbtrance.djrank.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -57,14 +58,17 @@ public class User {
     // Avoid lazy loading using FetchType.EAGER.
     @OneToMany(fetch = FetchType.EAGER, targetEntity=Biography.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
+    @JsonBackReference
     private List<Biography> biographyList;
 
     @OneToMany(targetEntity=Image.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
+    @JsonBackReference
     private Set<Image> imageSet;
 
     @OneToMany(targetEntity=Link.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
+    @JsonBackReference
     private Set<Link> linkSet;
 
     @OneToOne(targetEntity=Preferences.class, cascade = CascadeType.ALL)
@@ -74,11 +78,25 @@ public class User {
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(name="user_label", joinColumns = @JoinColumn(name="user_id",referencedColumnName = "user_id"),
                inverseJoinColumns =@JoinColumn(name="label_id",referencedColumnName = "label_id"))
+    @JsonBackReference
     List<Label> labelList;
 
     @OneToMany(targetEntity=Vote.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = true)
+    @JsonBackReference
     private List<Vote> voteList;
+
+
+    /**
+     *
+     * @param prefs
+     */
+    public void addPreferences(Preferences prefs){
+        if (prefs != null){
+            prefs.setUser(this);
+            this.prefs = prefs;
+        }
+    }
 
     /**
      *
@@ -135,6 +153,10 @@ public class User {
         }
     }
 
+    /**
+     *
+     * @param link
+     */
     public void addLink(Link link) {
         if (link != null) {
             if (linkSet == null) {

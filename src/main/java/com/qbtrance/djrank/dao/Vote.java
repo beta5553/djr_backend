@@ -1,5 +1,6 @@
 package com.qbtrance.djrank.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ public class Vote {
 
     @ManyToOne
     @JoinColumn (name = "user_id", insertable=false, updatable=false, nullable = true)
+    @JsonBackReference
     private User user;
 
 }

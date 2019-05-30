@@ -30,9 +30,13 @@ public class djrController {
         response.sendRedirect("/index.html");
     }
 
+
+    // Fix Circular References
+    // https://stackoverflow.com/questions/17393812/json-and-java-circular-reference
+
     @GetMapping("/getUsers")
-    public List<User> getDjs()  {
-        return (List<User>) userRepository.findByUserId(43);
+    public User getDjs()  {
+        return userRepository.findByUserId(46);
     }
 
 }

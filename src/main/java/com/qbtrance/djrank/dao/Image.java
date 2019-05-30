@@ -1,5 +1,6 @@
 package com.qbtrance.djrank.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +30,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn (name = "user_id", insertable=false, updatable=false, nullable = true)
+    @JsonBackReference
     private User user;
 
 }

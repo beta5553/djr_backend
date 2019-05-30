@@ -1,5 +1,6 @@
 package com.qbtrance.djrank.dao;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -33,6 +34,7 @@ public class Label {
 
     // The value of mappedBy should be the name of the field, in this case the list that is defined into the User entity.
     @ManyToMany(mappedBy = "labelList")
+    @JsonBackReference
     List<User> userList;
 
 }

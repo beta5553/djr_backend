@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Slf4j
 @Controller
 public class WelcomeController {
@@ -17,10 +20,14 @@ public class WelcomeController {
 
     @ResponseBody
     @GetMapping("/welcome")
-    public String hello(Model model){
+    public void hello(Model model, HttpServletResponse response){
         model.addAttribute("user", "Izzy");
         log.info("model = {}", model);
-        return "Welcome jsp";
+        //return "Welcome jsp";
+        try {
+            response.sendRedirect("/welcome.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 }

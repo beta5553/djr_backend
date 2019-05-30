@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserRepository extends CrudRepository <User, Integer> {
 
-    List<User> findByUserId(Integer userId);
+    User findByUserId(Integer userId);
+    //List<User> findByUserId(Integer userId);
 
 }

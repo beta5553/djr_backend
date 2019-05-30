@@ -22,7 +22,7 @@ public class Preferences {
     @Column (name = "BG_COLOR")
     private String bgColor;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn (name = "user_id", insertable=false, updatable=false, nullable = true)
     private User user;
 

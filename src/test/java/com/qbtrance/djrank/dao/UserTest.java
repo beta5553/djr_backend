@@ -43,10 +43,9 @@ public class UserTest {
     public void deleteUserTest(){
         logger.info("deleteUserTest start");
 
-        List<User> userList = userRepository.findByUserId(42);
+        User user = userRepository.findByUserId(42);
 
-        if (userList != null)
-            for (User user : userList) {
+        if (user != null){
                 System.out.println("User to delete: " + user.getLastName());
                 userRepository.delete(user);
             }
@@ -57,11 +56,9 @@ public class UserTest {
     @Test
     public void editUserWithBioTest(){
         logger.info("editUserTest start");
-        List<User> userList = userRepository.findByUserId(41);
+        User user = userRepository.findByUserId(41);
 
-        if(userList != null)
-            for (User user : userList)
-            {
+        if(user != null){
                 System.out.println("Editing user: " + user.getFirstName());
                 user.setFirstName("Israel - Edited");
                 user.setLastName("Morales - Edited");
