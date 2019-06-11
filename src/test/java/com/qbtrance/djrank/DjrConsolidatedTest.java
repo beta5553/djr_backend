@@ -1,6 +1,7 @@
 package com.qbtrance.djrank;
 
 import com.qbtrance.djrank.dao.*;
+import com.qbtrance.djrank.utilities.UserUtilities;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -97,7 +98,12 @@ public class DjrConsolidatedTest {
 
         userRepository.save(user);
 
+        logger.info("Creating file system");
+        UserUtilities.createUserFileSystem(user);
+
         logger.info("createFullUserTest end");
+
+
     }
 
     public User createUser() {
